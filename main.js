@@ -1,4 +1,4 @@
-import { HashMap } from "./app.js";
+import { HashMap, HashSet } from "./app.js";
 
 const test = new HashMap(16, .75);
 
@@ -54,3 +54,56 @@ for (const entry of test.data) {
 test.clear();
 
 console.log(test.entries());
+
+const test2 = new HashSet(16, .75);
+
+test2.set('apple')
+test2.set('banana')
+test2.set('carrot')
+test2.set('dog')
+test2.set('elephant')
+test2.set('frog')
+test2.set('grape')
+test2.set('hat')
+test2.set('ice cream')
+test2.set('jacket')
+test2.set('kite')
+test2.set('lion')
+
+test2.set('hat');
+
+console.log(test2.entries());
+
+console.log(test2.get('carrot'));
+
+console.log(test2.has('ice cream'));
+
+for (const entry of test2.data) {
+    console.log(entry);
+}
+
+test2.set('moon')
+
+console.log(test2.entries());
+
+console.log(test2.remove('moon'));
+
+console.log(test2.entries());
+
+console.log(test2.data.length);
+
+test2.set('car');
+test2.set('computer');
+test2.set('microphone');
+
+console.log(test2.data.length);
+
+console.log(test2.keys());
+
+for (const entry of test2.data) {
+    console.log(entry);
+}
+
+test2.clear();
+
+console.log(test2.entries());
