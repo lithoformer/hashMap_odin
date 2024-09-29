@@ -17,7 +17,7 @@ class HashMap {
     }
 
     set(key, val) {
-        const hashCode = this.hash(key);
+        let hashCode = this.hash(key);
         if (this.data[hashCode] === undefined) {
             const list = new LinkedList();
             this.data[hashCode] = list;
@@ -41,10 +41,11 @@ class HashMap {
                 if (this.length() / this.data.length > this.loadFactor) {
                     const newKeys = this.keys();
                     const newValues = this.values();
-                    this.data = new Array(this.data.length * 2);
+                    this.data = new Array(this.data.length + 47);
                     for (let i = 0; i < newKeys.length; i++) {
                         this.set(newKeys[i], newValues[i]);
                     }
+                    this.set(key, val);
                 }
                 else {
                     this.data[hashCode].append([key, val], null);
