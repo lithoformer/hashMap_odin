@@ -2,7 +2,8 @@ import { LinkedList } from "./linkedList.js";
 
 class HashMap {
     constructor(size, loadFactor) {
-        this.data = new Array(Math.floor(size * loadFactor));
+        this.data = new Array(Math.floor(size));
+        this.loadFactor = loadFactor;
     }
 
     hash(key) {
@@ -37,8 +38,18 @@ class HashMap {
                         return node;
                     }
                 }
-                this.data[hashCode].append([key, val], null);
-                return this.data[hashCode].head;
+                if (this.length() / this.data.length > this.loadFactor) {
+                    const newKeys = this.keys();
+                    const newValues = this.values();
+                    this.data = new Array(this.data.length * 2);
+                    for (let i = 0; i < newKeys.length; i++) {
+                        this.set(newKeys[i], newValues[i]);
+                    }
+                }
+                else {
+                    this.data[hashCode].append([key, val], null);
+                    return this.data[hashCode].head;
+                }
             }
         }
     }

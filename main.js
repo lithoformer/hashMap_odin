@@ -1,6 +1,6 @@
 import { HashMap } from "./app.js";
 
-const test = new HashMap(47, .75);
+const test = new HashMap(16, .75);
 
 test.set('apple', 'red')
 test.set('banana', 'yellow')
@@ -23,6 +23,10 @@ console.log(test.get('carrot'));
 
 console.log(test.has('ice cream'));
 
+for (const entry of test.data) {
+    console.log(entry);
+}
+
 test.set('moon', 'silver')
 
 console.log(test.entries());
@@ -31,11 +35,21 @@ console.log(test.remove('moon'));
 
 console.log(test.entries());
 
-console.log(test.length());
+console.log(test.data.length);
+
+test.set('car', 'grey');
+test.set('computer', 'black');
+test.set('microphone', 'silver');
+
+console.log(test.data.length);
 
 console.log(test.keys());
 
 console.log(test.values());
+
+for (const entry of test.data) {
+    console.log(entry);
+}
 
 test.clear();
 
